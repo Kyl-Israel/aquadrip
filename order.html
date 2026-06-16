@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en-PH">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta
+      name="description"
+      content="Send a water order request to AquaDrip Water Refilling Station for delivery or pickup in Dauis, Panglao, and Tagbilaran City, Bohol."
+    >
+    <title>Order Water from AquaDrip Water Refilling Station in Dauis, Bohol</title>
+    <meta name="robots" content="index,follow">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body data-page="order">
+    <div class="page-background" aria-hidden="true">
+      <span class="bg-orb orb-a"></span>
+      <span class="bg-orb orb-b"></span>
+      <span class="bg-orb orb-c"></span>
+    </div>
+
+    <header class="site-header" id="top">
+      <div class="container header-inner">
+        <a class="brand" href="index.html" aria-label="AquaDrip Water Refilling Station home">
+          <span class="brand-mark">
+            <img class="brand-logo" src="Images/logo.png" alt="AquaDrip Water Refilling Station logo">
+          </span>
+          <span class="brand-copy">
+            <strong class="brand-word" aria-label="AquaDrip"><span aria-hidden="true">AQUADR<span class="brand-i">i</span>P</span></strong>
+            <span class="brand-subtitle">WATER REFILLING STATION</span>
+          </span>
+        </a>
+
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="site-navigation"
+          aria-label="Open navigation menu"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <nav class="site-nav" id="site-navigation" aria-label="Primary navigation">
+          <ul class="nav-links">
+            <li><a href="index.html" data-page="home">Home</a></li>
+            <li><a href="services.html" data-page="services">Services</a></li>
+            <li><a href="pricing.html" data-page="pricing">Pricing</a></li>
+            <li><a href="order.html" data-page="order">Order</a></li>
+            <li><a href="contact.html" data-page="contact">Contact</a></li>
+          </ul>
+          <a class="button button-primary nav-cta ripple-target" href="#order-form-section">Order Now</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="section order-section" id="order-form-section">
+        <div class="container order-grid">
+          <div class="section-heading order-heading" id="order-heading" data-reveal="hero" hidden>
+            <h1 class="sr-only">Order AquaDrip purified water in Dauis, Panglao, and Tagbilaran City</h1>
+            <p class="eyebrow">Request Form</p>
+            <p>Send your order request to AquaDrip by email. The station will contact you shortly to confirm details.</p>
+          </div>
+
+          <section class="order-type-gate glass-card" id="order-type-gate" aria-labelledby="order-type-title" data-reveal>
+            <p class="eyebrow">Choose Order Type</p>
+            <h2 id="order-type-title">What kind of order would you like to send?</h2>
+            <p>Choose a normal one-time refill or request a recurring schedule for regular deliveries.</p>
+
+            <div class="order-type-options">
+              <button class="order-type-card ripple-target" type="button" data-order-type="normal">
+                <strong>Normal Order</strong>
+                <span class="order-type-description">Best for one-time pickup or delivery requests.</span>
+              </button>
+
+              <button class="order-type-card ripple-target" type="button" data-order-type="recurring">
+                <strong>Recurring Order</strong>
+                <span class="order-type-description">Best for weekly, monthly, office, or household refill schedules.</span>
+              </button>
+            </div>
+          </section>
+
+          <form class="order-form glass-card" id="order-form" novalidate data-reveal hidden>
+            <div class="form-grid">
+              <input
+                class="honeypot-field"
+                type="text"
+                name="aqua_confirm"
+                autocomplete="new-password"
+                tabindex="-1"
+                aria-hidden="true"
+              >
+              <input type="hidden" name="orderType" id="order-type">
+              <div class="order-type-summary field-span-2" id="order-type-summary" hidden>
+                <div>
+                  <span class="form-label">Selected Order Type</span>
+                  <strong id="order-type-summary-label">Normal Order</strong>
+                </div>
+                <button class="button button-ghost ripple-target" type="button" id="change-order-type">Change</button>
+              </div>
+              <label>
+                Full Name
+                <input type="text" name="name" placeholder="Enter your full name" required>
+              </label>
+              <label>
+                Contact Number
+                <input type="tel" name="contact" placeholder="09XX XXX XXXX" required inputmode="tel">
+              </label>
+              <label class="field-span-2">
+                Address
+                <input type="text" name="address" placeholder="House number, street, barangay" required>
+              </label>
+              <label>
+                Number of Gallons
+                <input type="number" name="gallons" min="1" step="1" placeholder="e.g. 3" required>
+              </label>
+              <label class="field-select">
+                Delivery or Pickup
+                <select name="fulfillment" required>
+                  <option value="">Select one</option>
+                  <option value="Delivery">Delivery</option>
+                  <option value="Pickup">Pickup</option>
+                </select>
+              </label>
+              <label class="field-date">
+                Preferred Date
+                <input type="date" name="date" required>
+              </label>
+              <label>
+                Preferred Time
+                <input type="text" name="time" placeholder="Morning, 2:00 PM, or ASAP" required>
+              </label>
+              <div class="recurring-fields field-span-2" id="recurring-fields" hidden>
+                <div class="recurring-head">
+                  <span class="form-label">Recurring Schedule <span>Subject for confirmation</span></span>
+                  <p>The preferred date above will be treated as the first requested delivery date. The station will contact you to confirm availability.</p>
+                </div>
+
+                <div class="recurring-grid">
+                  <label class="field-select">
+                    Frequency
+                    <select name="recurringFrequency">
+                      <option value="">Select frequency</option>
+                      <option value="Daily">Daily</option>
+                      <option value="Weekly">Weekly</option>
+                      <option value="Every 2 weeks">Every 2 weeks</option>
+                      <option value="Every 3 weeks">Every 3 weeks</option>
+                      <option value="Monthly">Monthly</option>
+                    </select>
+                  </label>
+
+                  <fieldset class="delivery-days field-span-2">
+                    <legend>Preferred Delivery Days</legend>
+                    <div class="weekday-grid">
+                      <label><input type="checkbox" name="recurringDays" value="Monday"> Monday</label>
+                      <label><input type="checkbox" name="recurringDays" value="Tuesday"> Tuesday</label>
+                      <label><input type="checkbox" name="recurringDays" value="Wednesday"> Wednesday</label>
+                      <label><input type="checkbox" name="recurringDays" value="Thursday"> Thursday</label>
+                      <label><input type="checkbox" name="recurringDays" value="Friday"> Friday</label>
+                      <label><input type="checkbox" name="recurringDays" value="Saturday"> Saturday</label>
+                      <label><input type="checkbox" name="recurringDays" value="Sunday"> Sunday</label>
+                    </div>
+                  </fieldset>
+
+                  <label class="field-span-2">
+                    Recurring Notes <span class="optional-copy">Optional</span>
+                    <input type="text" name="recurringNotes" placeholder="Example: Deliver every Monday morning, except holidays">
+                  </label>
+                </div>
+              </div>
+              <div class="location-pin-field field-span-2" hidden>
+                <button
+                  class="location-pin-toggle"
+                  type="button"
+                  id="location-pin-toggle"
+                  aria-expanded="false"
+                  aria-controls="location-pin-content"
+                >
+                  <div>
+                    <span class="form-label">Pin your location <span>Optional</span></span>
+                    <span class="location-pin-note">Add a map pin if the delivery address is hard to find.</span>
+                  </div>
+                  <span class="location-pin-chevron" aria-hidden="true"></span>
+                </button>
+
+                <div class="location-pin-content" id="location-pin-content" aria-hidden="true">
+                  <div class="location-pin-content-inner">
+                    <input type="hidden" name="deliveryLat" id="delivery-lat">
+                    <input type="hidden" name="deliveryLng" id="delivery-lng">
+                    <div class="location-pin-actions" aria-label="Delivery location pin options">
+                      <button class="button button-secondary ripple-target" type="button" id="use-current-location">Use My Current Location</button>
+                      <button class="button button-ghost ripple-target" type="button" id="pin-on-map">Pin on Map</button>
+                      <button class="button button-ghost ripple-target" type="button" id="clear-location-pin">Clear Pin</button>
+                    </div>
+                    <div class="delivery-map" id="delivery-map" role="application" aria-label="Map for choosing delivery location"></div>
+                    <p class="location-pin-status" id="location-pin-status" aria-live="polite">No delivery pin added yet.</p>
+                  </div>
+                </div>
+              </div>
+              <label class="field-span-2">
+                Notes / Special Instructions
+                <textarea name="notes" rows="4" placeholder="Gate details, office floor, landmarks, or refill reminders"></textarea>
+              </label>
+            </div>
+
+            <div class="form-actions">
+              <button class="button button-primary ripple-target" type="submit">Submit Order</button>
+              <a class="button button-ghost ripple-target" href="https://www.facebook.com/profile.php?id=61584655734631" target="_blank" rel="noreferrer">Order via Facebook</a>
+              <a class="button button-ghost ripple-target" href="contact.html">Order via Phone</a>
+            </div>
+
+            <p class="form-feedback" id="form-feedback" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-grid">
+        <div>
+          <a class="brand footer-brand" href="index.html">
+            <span class="brand-mark">
+              <img class="brand-logo" src="Images/logo.png" alt="AquaDrip Water Refilling Station logo">
+            </span>
+            <span class="brand-copy">
+              <strong class="brand-word" aria-label="AquaDrip"><span aria-hidden="true">AQUADR<span class="brand-i">i</span>P</span></strong>
+              <span class="brand-subtitle">WATER REFILLING STATION</span>
+            </span>
+          </a>
+          <p class="footer-tagline">Purity in every drop, served with cleanliness, consistency, and local care.</p>
+        </div>
+
+        <div class="footer-links">
+          <h3>Quick Links</h3>
+          <a href="services.html">Services</a>
+          <a href="pricing.html">Pricing</a>
+          <a href="order.html">Order</a>
+        </div>
+
+        <div class="footer-links">
+          <h3>Contact</h3>
+          <a href="tel:09480406539">0948 040 6539</a>
+          <a href="https://www.facebook.com/profile.php?id=61584655734631" target="_blank" rel="noreferrer">Facebook</a>
+          <span>Purok 7, Totolan, Dauis, Bohol 6339</span>
+        </div>
+      </div>
+
+      <div class="container footer-bottom">
+        <p>&copy; 2026 AquaDrip Water Refilling Station. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <button class="back-to-top" type="button" aria-label="Back to top">
+      <span>&uarr;</span>
+    </button>
+
+    <script src="script.js"></script>
+  </body>
+</html>
