@@ -83,8 +83,9 @@
             </div>
           </section>
 
-          <form class="order-form glass-card" id="order-form" novalidate data-reveal hidden>
+          <form class="order-form glass-card" id="order-form" name="water-order" method="POST" data-netlify="true" netlify-honeypot="aqua_confirm" novalidate data-reveal hidden>
             <div class="form-grid">
+              <input type="hidden" name="form-name" value="water-order">
               <input
                 class="honeypot-field"
                 type="text"

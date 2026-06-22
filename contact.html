@@ -206,8 +206,9 @@
               <p>Have a question, delivery concern, or refill request? Send a message directly to the business owner by email.</p>
             </div>
 
-            <form class="contact-message-form" id="contact-message-form" novalidate>
+            <form class="contact-message-form" id="contact-message-form" name="contact-message" method="POST" data-netlify="true" netlify-honeypot="aqua_confirm" novalidate>
               <div class="form-grid">
+                <input type="hidden" name="form-name" value="contact-message">
                 <input
                   class="honeypot-field"
                   type="text"

@@ -202,21 +202,25 @@ const blockIfCoolingDown = (key, feedbackElement) => {
   return true;
 };
 
-const postJson = async (url, payload) => {
-  const response = await fetch(url, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(payload),
+const postNetlifyForm = async (form) => {
+  const formData = new FormData(form);
+  const encodedForm = new URLSearchParams();
+
+  formData.forEach((value, key) => {
+    encodedForm.append(key, value);
   });
 
-  const result = await response.json().catch(() => ({}));
-  if (!response.ok) {
-    throw new Error(result.message || "Unable to send your request right now.");
-  }
+  const response = await fetch("/", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded",
+    },
+    body: encodedForm.toString(),
+  });
 
-  return result;
+  if (!response.ok) {
+    throw new Error("Unable to send your request right now.");
+  }
 };
 
 const isLikelyMobileOrTablet = () => {
@@ -706,7 +710,6 @@ if (orderForm && formFeedback) {
 
     const recurringFrequency = String(formData.get("recurringFrequency") || "").trim();
     const recurringDays = formData.getAll("recurringDays").map((day) => String(day).trim()).filter(Boolean);
-    const recurringNotes = String(formData.get("recurringNotes") || "").trim();
 
     if (orderType === "recurring" && (!recurringFrequency || recurringDays.length === 0)) {
       setFeedback(formFeedback, "Please choose a recurring frequency and at least one preferred delivery day.");
@@ -750,26 +753,8 @@ if (orderForm && formFeedback) {
     submitButton.textContent = "Sending...";
     setFeedback(formFeedback, "Sending your order request...");
 
-    const payload = {
-      orderType,
-      name: String(formData.get("name") || "").trim(),
-      contact: String(formData.get("contact") || "").trim(),
-      address: String(formData.get("address") || "").trim(),
-      gallons: String(formData.get("gallons") || "").trim(),
-      fulfillment: String(formData.get("fulfillment") || "").trim(),
-      date: String(formData.get("date") || "").trim(),
-      time: String(formData.get("time") || "").trim(),
-      recurringFrequency,
-      recurringDays,
-      recurringNotes,
-      deliveryLat,
-      deliveryLng,
-      notes: String(formData.get("notes") || "").trim(),
-      aquaConfirm: String(formData.get("aqua_confirm") || "").trim(),
-    };
-
     try {
-      const result = await postJson("/.netlify/functions/send-order-email", payload);
+      await postNetlifyForm(orderForm);
       orderForm.reset();
       hasUnsavedOrderChanges = false;
       if (orderTypeInput) {
@@ -786,7 +771,7 @@ if (orderForm && formFeedback) {
       storage.set(ORDER_COOLDOWN_KEY, String(Date.now()));
       setFeedback(
         formFeedback,
-        result.message || "Thank you! Your order request has been sent. We will contact you shortly.",
+        "Thank you! Your order request has been sent. We will contact you shortly.",
         true
       );
     } catch (error) {
@@ -809,9 +794,7 @@ if (contactMessageForm && contactMessageFeedback) {
     const formData = new FormData(contactMessageForm);
     const name = String(formData.get("name") || "").trim();
     const email = String(formData.get("email") || "").trim();
-    const contactNumber = String(formData.get("contactNumber") || "").trim();
     const message = String(formData.get("message") || "").trim();
-    const aquaConfirm = String(formData.get("aqua_confirm") || "").trim();
 
     if (!name || !email || !message || !contactMessageForm.checkValidity()) {
       setFeedback(contactMessageFeedback, "Please complete the required fields before sending your message.");
@@ -829,19 +812,12 @@ if (contactMessageForm && contactMessageFeedback) {
     setFeedback(contactMessageFeedback, "Sending your message...");
 
     try {
-      const result = await postJson("/.netlify/functions/send-contact-email", {
-        name,
-        email,
-        contactNumber,
-        message,
-        aquaConfirm,
-      });
-
+      await postNetlifyForm(contactMessageForm);
       contactMessageForm.reset();
       storage.set(CONTACT_COOLDOWN_KEY, String(Date.now()));
       setFeedback(
         contactMessageFeedback,
-        result.message || "Thank you! Your message has been sent. We will get back to you shortly.",
+        "Thank you! Your message has been sent. We will get back to you shortly.",
         true
       );
     } catch (error) {

@@ -1,12 +1,9 @@
 {
   "name": "three-kings-water-refilling-station",
   "version": "1.0.0",
-  "description": "Static Netlify website for AquaDrip Water Refilling Station with email form notifications.",
+  "description": "Static Netlify website for AquaDrip Water Refilling Station with Netlify Forms.",
   "scripts": {
     "dev": "npx netlify dev",
     "build": "echo \"Static site - no build step\""
-  },
-  "dependencies": {
-    "nodemailer": "^6.10.1"
   }
 }
