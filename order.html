@@ -83,7 +83,30 @@
             </div>
           </section>
 
-          <form class="order-form glass-card" id="order-form" name="water-order" method="POST" data-netlify="true" netlify-honeypot="aqua_confirm" novalidate data-reveal hidden>
+          <form class="netlify-detection-form" name="water-order" method="POST" data-netlify="true" netlify netlify-honeypot="aqua_confirm" hidden>
+            <input type="hidden" name="form-name" value="water-order">
+            <input type="text" name="aqua_confirm">
+            <input type="hidden" name="orderType">
+            <input type="text" name="name">
+            <input type="tel" name="contact">
+            <input type="text" name="address">
+            <input type="number" name="gallons">
+            <select name="fulfillment">
+              <option value=""></option>
+            </select>
+            <input type="date" name="date">
+            <input type="text" name="time">
+            <select name="recurringFrequency">
+              <option value=""></option>
+            </select>
+            <input type="checkbox" name="recurringDays" value="Monday">
+            <input type="text" name="recurringNotes">
+            <input type="hidden" name="deliveryLat">
+            <input type="hidden" name="deliveryLng">
+            <textarea name="notes"></textarea>
+          </form>
+
+          <form class="order-form glass-card" id="order-form" name="water-order" method="POST" data-netlify="true" netlify netlify-honeypot="aqua_confirm" novalidate data-reveal hidden>
             <div class="form-grid">
               <input type="hidden" name="form-name" value="water-order">
               <input

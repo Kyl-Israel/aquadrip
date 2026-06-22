@@ -206,7 +206,16 @@
               <p>Have a question, delivery concern, or refill request? Send a message directly to the business owner by email.</p>
             </div>
 
-            <form class="contact-message-form" id="contact-message-form" name="contact-message" method="POST" data-netlify="true" netlify-honeypot="aqua_confirm" novalidate>
+            <form class="netlify-detection-form" name="contact-message" method="POST" data-netlify="true" netlify netlify-honeypot="aqua_confirm" hidden>
+              <input type="hidden" name="form-name" value="contact-message">
+              <input type="text" name="aqua_confirm">
+              <input type="text" name="name">
+              <input type="email" name="email">
+              <input type="tel" name="contactNumber">
+              <textarea name="message"></textarea>
+            </form>
+
+            <form class="contact-message-form" id="contact-message-form" name="contact-message" method="POST" data-netlify="true" netlify netlify-honeypot="aqua_confirm" novalidate>
               <div class="form-grid">
                 <input type="hidden" name="form-name" value="contact-message">
                 <input
